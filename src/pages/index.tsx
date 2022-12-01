@@ -1,5 +1,4 @@
 import { type NextPage } from "next";
-import Head from "next/head";
 import Link from "next/link";
 import { signIn, signOut, useSession } from "next-auth/react";
 
@@ -26,7 +25,7 @@ const Home: NextPage = () => {
     console.log(data, error, status);
   }, [error, status]);
 
-  const { data: sessionData } = useSession();
+  // const { data: sessionData } = useSession();
 
   return (
     <>
@@ -35,7 +34,8 @@ const Home: NextPage = () => {
           <div className="flex h-[60vh] flex-col items-center justify-between rounded-b-3xl bg-gradient-to-t from-rose-200 to-fuchsia-400">
             <header className="flex w-full flex-row items-center justify-between px-8 py-6">
               <div className="branding flex flex-row items-center">
-                <Logo color="white" />
+                <Logo color="white" w={12} h={12} />
+                &ensp;
                 <h1 className="text-center text-4xl text-white">aviate</h1>
               </div>
               <div className="actions flex items-center">
@@ -43,11 +43,11 @@ const Home: NextPage = () => {
                   for employers
                 </a>
                 <Link
-                  className="rounded-full flex items-center bg-black px-6 py-2 text-xl font-bold uppercase text-white"
+                  className="flex items-center rounded-full bg-black px-6 py-2 text-xl font-bold uppercase text-white"
                   href="/login"
                 >
                   Start &ensp;
-                  <ArrowRight/>
+                  <ArrowRight />
                 </Link>
               </div>
             </header>

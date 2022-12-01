@@ -152,6 +152,7 @@ model Onboardtask {
   updatedAt   DateTime   @updatedAt
   name        String
   callbackUrl String
+  order       Int        @default(0)
   UserTasks   UserTasks? @relation(fields: [userTasksId], references: [id])
   userTasksId String?
 }
@@ -160,7 +161,7 @@ model UserTasks {
   id     String        @id @default(cuid())
   user   User          @relation(fields: [userId], references: [id])
   tasks  Onboardtask[]
-  userId String
+  userId String        @unique
 }
 
 model VerificationToken {
