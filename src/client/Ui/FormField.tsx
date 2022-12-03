@@ -18,6 +18,7 @@ const FormField: React.FC<{
         </label>
       )}
       <input
+        {...inputProps}
         onFocus={() => setFocus(true)}
         onBlur={() => setFocus(false)}
         className={`w-full rounded-xl border border-violet-500 bg-violet-100 p-4 text-xl outline-none focus:border-2`}

@@ -1,3 +1,4 @@
+import { z } from "zod";
 import { router, publicProcedure } from "../trpc";
 
 export const generalRouter = router({
@@ -16,6 +17,17 @@ export const generalRouter = router({
       },
     });
   }),
+  searchForSkills: publicProcedure
+    .input(z.object({ searchTerm: z.string() }))
+    .query(({ ctx, input }) => {
+      return ctx.prisma.skills.findMany({
+        where: {
+          name: {
+            contains: input.searchTerm || undefined,
+          },
+        },
+      });
+    }),
   // addJobPOst: publicProcedure
   //   .input(
   //     z.object({

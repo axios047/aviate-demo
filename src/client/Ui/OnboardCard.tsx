@@ -1,3 +1,4 @@
+import { useRouter } from "next/router";
 import React from "react";
 import { ArrowRight, Zap } from "react-feather";
 import { trpc } from "../../utils/trpc";
@@ -6,8 +7,10 @@ import Loader from "./Loader";
 const OnboardCard: React.FC = () => {
   const { data, error, status } = trpc.onboard.getStatus.useQuery();
   const onCompleteTask = trpc.onboard.completeTask.useMutation();
+  const router = useRouter();
   const handleClick = () => {
     onCompleteTask.mutate({ taskId: data?.next?.id });
+    router.push(data?.next.callbackUrl);
   };
   return (
     <div className="onboard-card w-1/2 overflow-hidden rounded-xl border border-black bg-fuchsia-400">
