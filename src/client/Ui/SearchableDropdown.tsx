@@ -1,5 +1,4 @@
-import { Prisma } from "@prisma/client";
-import React, { use, useEffect, useState } from "react";
+import React, { useState } from "react";
 
 const SearchableDropdown: React.FC<{
   inputProps: any;
