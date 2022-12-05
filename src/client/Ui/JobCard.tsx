@@ -17,7 +17,6 @@ const JobCard: React.FC<{
           <div className="image relative">
             <Image
               // TODO - fix type
-              // @ts-ignore
               alt="logo"
               src={postedBy.logoUrl}
               width={75}

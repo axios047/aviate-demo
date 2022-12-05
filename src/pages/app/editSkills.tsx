@@ -7,7 +7,7 @@ import Loader from "../../client/Ui/Loader";
 import SearchableDropdown from "../../client/Ui/SearchableDropdown";
 import { trpc } from "../../utils/trpc";
 
-const editSkills: React.FC = () => {
+const EditSkills: React.FC = () => {
   const {
     register,
     handleSubmit,
@@ -25,24 +25,23 @@ const editSkills: React.FC = () => {
     data: currentSkills,
     error,
     status,
-    refetch
+    refetch,
   } = trpc.auth.getUserSkills.useQuery();
   useEffect(() => {
     console.log(currentSkills, watch("skill"), "data");
   }, [currentSkills]);
   const onUpdate = trpc.auth.addUserSkill.useMutation();
   const [selectedSkillId, setSkillId] = useState("");
-  const { data: searchSkillsResult } =
-    trpc.general.searchForSkills.useQuery(
-      {
-        searchTerm: watch("skill"),
-      },
-      {
-        enabled: watch("skill") !== (null || ""),
-        // refetchOnReconnect: true,
-        // refetchOnMount: true,
-      }
-    );
+  const { data: searchSkillsResult } = trpc.general.searchForSkills.useQuery(
+    {
+      searchTerm: watch("skill"),
+    },
+    {
+      enabled: watch("skill") !== (null || ""),
+      // refetchOnReconnect: true,
+      // refetchOnMount: true,
+    }
+  );
   return (
     <FormLayout title="Add Education">
       <div className="current-skills">
@@ -82,4 +81,4 @@ const editSkills: React.FC = () => {
   );
 };
 
-export default editSkills;
+export default EditSkills;

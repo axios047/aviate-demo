@@ -15,7 +15,7 @@ export const getOnboardingStatus = async (session: any, prisma: any) => {
     console.log("SERVER", error, "err");
   }
 
-  let currentTasks = await prisma.userTasks.findUnique({
+  const currentTasks = await prisma.userTasks.findUnique({
     where: {
       userId: user.id,
     },
@@ -23,7 +23,7 @@ export const getOnboardingStatus = async (session: any, prisma: any) => {
       tasks: true,
     },
   });
-  let totalCount = 7;
+  const totalCount = 7;
   if (currentTasks == null) {
     // if tasks for user not init then add all tasks
     // get all tasks

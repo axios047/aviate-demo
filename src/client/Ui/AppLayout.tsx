@@ -1,5 +1,5 @@
 import Link from "next/link";
-import { Router, useRouter } from "next/router";
+import { useRouter } from "next/router";
 import React, { ReactNode, useEffect, useState } from "react";
 import {
   Briefcase,
@@ -43,7 +43,7 @@ const NavItem: React.FC<{
   icon: ReactNode;
 }> = ({ href, title, icon }) => {
   const router = useRouter();
-  let isActive = router.pathname === href;
+  const isActive = router.pathname === href;
   return (
     <Link
       href={href}
@@ -59,7 +59,7 @@ const NavItem: React.FC<{
 
 const ProfileStub: React.FC = () => {
   const { data: sessionData } = useSession();
-  let email = sessionData?.user?.email;
+  const email = sessionData?.user?.email;
   const [isDrop, toggleDrop] = useState(false);
   const router = useRouter();
   // go to login if logged out
@@ -83,13 +83,13 @@ const ProfileStub: React.FC = () => {
         <div className="dropdown absolute inset-x-0 top-full w-full rounded-xl bg-white p-4">
           <button
             onClick={() => router.push("/app/myProfile")}
-            className="flex w-full justify-between p-4 text-black hover:bg-zinc-200 rounded-md"
+            className="flex w-full justify-between rounded-md p-4 text-black hover:bg-zinc-200"
           >
             My Profile
           </button>
           <button
             onClick={() => signOut()}
-            className="flex w-full justify-between p-4 text-red-400 hover:bg-zinc-200 rounded-md"
+            className="flex w-full justify-between rounded-md p-4 text-red-400 hover:bg-zinc-200"
           >
             Log out
             <LogOut />
@@ -141,8 +141,8 @@ const AppLayout: React.FC<{ children: ReactNode }> = ({ children }) => {
           <span className="ml-4 text-4xl text-white">Aviate</span>
         </div>
         <div className="page-links">
-          {nav.map((link) => (
-            <NavItem {...link} />
+          {nav.map((link, index) => (
+            <NavItem key={index} {...link} />
           ))}
         </div>
       </div>

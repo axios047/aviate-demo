@@ -1,11 +1,11 @@
-import React, { useEffect } from "react";
+import React from "react";
 import { useForm } from "react-hook-form";
 import FormField from "../../client/Ui/FormField";
 import FormLayout from "../../client/Ui/FormLayout";
 import Loader from "../../client/Ui/Loader";
 import { trpc } from "../../utils/trpc";
 
-const addEducation: React.FC = () => {
+const AddEducation: React.FC = () => {
   const {
     register,
     handleSubmit,
@@ -57,4 +57,4 @@ const addEducation: React.FC = () => {
   );
 };
 
-export default addEducation;
+export default AddEducation;

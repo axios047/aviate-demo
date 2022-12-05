@@ -4,7 +4,7 @@ import Layout from "../../../client/Ui/Layout";
 import Loader from "../../../client/Ui/Loader";
 import { trpc } from "../../../utils/trpc";
 
-const verifySkill: React.FC = () => {
+const VerifySkill: React.FC = () => {
   const router = useRouter();
   const { skillId } = router.query;
   const verify = trpc.auth.verifySkill.useMutation();
@@ -33,4 +33,4 @@ const verifySkill: React.FC = () => {
   );
 };
 
-export default verifySkill;
+export default VerifySkill;

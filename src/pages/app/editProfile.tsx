@@ -7,7 +7,7 @@ import FormLayout from "../../client/Ui/FormLayout";
 import Loader from "../../client/Ui/Loader";
 import { trpc } from "../../utils/trpc";
 
-const editProfile: React.FC = () => {
+const EditProfile: React.FC = () => {
   const { data: session } = useSession();
 
   const {
@@ -19,7 +19,7 @@ const editProfile: React.FC = () => {
     formState: { errors },
   } = useForm();
   const onSave = () => {
-    let { email, image, name } = getValues();
+    const { email, image, name } = getValues();
     onUpdate.mutate({
       email: email,
       name: name,
@@ -35,7 +35,7 @@ const editProfile: React.FC = () => {
     });
   }, [session]);
   const getSrc = () => {
-    let src = watch("image");
+    const src = watch("image");
     if (src != undefined && src.includes("http")) {
       return src;
     } else {
@@ -80,4 +80,4 @@ const editProfile: React.FC = () => {
   );
 };
 
-export default editProfile;
+export default EditProfile;

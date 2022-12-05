@@ -5,7 +5,7 @@ import FormLayout from "../../client/Ui/FormLayout";
 import Loader from "../../client/Ui/Loader";
 import { trpc } from "../../utils/trpc";
 
-const addWork: React.FC = () => {
+const AddWork: React.FC = () => {
   const {
     register,
     handleSubmit,
@@ -57,4 +57,4 @@ const addWork: React.FC = () => {
   );
 };
 
-export default addWork;
+export default AddWork;

@@ -14,12 +14,12 @@ const RecommendedJobs: React.FC = () => {
       <br />
       <hr className="border-rose-300" />
       <br />
-      <div className="job-wrap flex flex-wrap mb-24">
-        {data?.map((post:any)=>{
-          let postedOn = moment(post.createdAt.toISOString()).format(
+      <div className="job-wrap mb-24 flex flex-wrap">
+        {data?.map((post: any) => {
+          const postedOn = moment(post.createdAt.toISOString()).format(
             "YYYYMMDD"
-          );         
-          return <JobCard {...{ ...post, postedOn: postedOn }}/>
+          );
+          return <JobCard key={post.id} {...{ ...post, postedOn: postedOn }} />;
         })}
       </div>
     </div>
