@@ -15,7 +15,7 @@ export const getOnboardingStatus = async (session: any, prisma: any) => {
     console.log("SERVER", error, "err");
   }
 
-  const currentTasks = await prisma.userTasks.findUnique({
+  let currentTasks = await prisma.userTasks.findUnique({
     where: {
       userId: user.id,
     },
