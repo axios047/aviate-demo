@@ -38,7 +38,7 @@ const SearchableDropdown: React.FC<{
       />
       {searchResults && (
         <div className="search-results top-100 absolute inset-x-0 rounded-xl bg-white">
-          {searchResults?.map((skill: Prisma.SkillsSelect, index: number) => (
+          {searchResults?.map((skill: any, index: number) => (
             <button
               onClick={() => {
                 setVal("skill", skill.name);
