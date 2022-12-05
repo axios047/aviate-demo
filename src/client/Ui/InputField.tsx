@@ -4,7 +4,7 @@ const InputField: React.FC<{
   type: string;
   label: string;
   placeholder: string;
-  onChangeValue: (value: string) => {};
+  onChangeValue: (value: string) => void;
 }> = ({ type, label, placeholder, onChangeValue }) => {
   const [focus, setFocus] = useState(false);
   return (
