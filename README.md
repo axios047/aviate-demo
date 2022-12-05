@@ -5,8 +5,10 @@ A demo dashboard showing the onboarding process for candidate looking for a job
 ## Architecture
 
 This is a [T3 Stack](https://create.t3.gg/) project bootstrapped with `create-t3-app`.
+A simple architechture overview
+![architechture](https://ik.imagekit.io/o5id4gas4/architechture.png?ik-sdk-version=javascript-1.4.3&updatedAt=1670239360829 "architechture").
 
-## Learn More
+## Learn More about T3
 
 To learn more about the [T3 Stack](https://create.t3.gg/), take a look at the following resources:
 

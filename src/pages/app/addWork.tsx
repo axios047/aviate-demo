@@ -15,7 +15,7 @@ const AddWork: React.FC = () => {
     formState: { errors },
   } = useForm();
   const onSave = () => {
-    let { company, role, description } = getValues();
+    const { company, role, description } = getValues();
     onUpdate.mutate({
       company: company,
       description: description,
