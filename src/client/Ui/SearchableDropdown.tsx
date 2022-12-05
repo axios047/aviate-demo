@@ -6,8 +6,8 @@ const SearchableDropdown: React.FC<{
   label: string;
   placeholder: string;
   searchResults: any;
-  setVal: (key: string, value: string) => {};
-  setSkillId: (id: string) => {};
+  setVal: any;
+  setSkillId: any;
 }> = ({
   inputProps,
   label,
