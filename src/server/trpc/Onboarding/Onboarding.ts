@@ -3,17 +3,12 @@ import { Prisma } from "@prisma/client";
 // given user id return {%completed,next step}
 export const getOnboardingStatus = async (session: any, prisma: any) => {
   // get user from email
-  let user;
-  try {
-    user = await prisma.user.findUnique({
-      where: {
-        email: session.user.email,
-      },
-    });
-    console.log("SERVER", user, "usr");
-  } catch (error) {
-    console.log("SERVER", error, "err");
-  }
+  const user = await prisma.user.findUnique({
+    where: {
+      email: session.user.email,
+    },
+  });
+  console.log("SERVER", user, "usr");
 
   let currentTasks = await prisma.userTasks.findUnique({
     where: {
@@ -42,10 +37,10 @@ export const getOnboardingStatus = async (session: any, prisma: any) => {
       },
     });
   }
-  let completion = totalCount - currentTasks.tasks.length;
-  let pcent = ((completion / totalCount) * 100);
+  const completion = totalCount - currentTasks.tasks.length;
+  const pcent = (completion / totalCount) * 100;
   // get next step for user
-  let nextStep = currentTasks.tasks[0];
+  const nextStep = currentTasks.tasks[0];
   return { completed: pcent, next: nextStep };
 };
 
