@@ -31,7 +31,7 @@ const OnboardCard: React.FC = () => {
             <h1 className="text-2xl font-bold text-white">
               Complete your onboarding
             </h1>
-            <p className="text-zinc-100">Here's what to do next</p>
+            <p className="text-zinc-100">What to do next</p>
           </div>
           <div className="status text-4xl text-fuchsia-600">
             {data?.completed?.toPrecision(2)}%

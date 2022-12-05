@@ -67,7 +67,7 @@ const ProfileStub: React.FC = () => {
     if (!sessionData?.user) {
       router.push("/login");
     }
-  }, [sessionData]);
+  }, [sessionData,router]);
   return (
     <div
       onClick={() => toggleDrop(!isDrop)}

@@ -15,7 +15,7 @@ const AddEducation: React.FC = () => {
     formState: { errors },
   } = useForm();
   const onSave = () => {
-    let { institution, course, description } = getValues();
+    const { institution, course, description } = getValues();
     onUpdate.mutate({
       institution: institution,
       description: description,

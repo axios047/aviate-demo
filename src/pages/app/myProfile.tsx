@@ -2,17 +2,17 @@ import { useSession } from "next-auth/react";
 import Image from "next/image";
 import { useRouter } from "next/router";
 import React from "react";
-import { ArrowLeft, ArrowRight, ChevronRight, Edit, Star } from "react-feather";
+import { ArrowLeft, ChevronRight, Edit, Star } from "react-feather";
 import Layout from "../../client/Ui/Layout";
 import { trpc } from "../../utils/trpc";
 
 const Stars = ({ rank }: { rank: number }) => {
   return (
-    <div className="stars text-rose-300 flex">
+    <div className="stars flex text-rose-300">
       {Array.from({ length: 5 }).map((_item, index) => {
         return (
-          <div className={`star ${index >= rank && "opacity-50"}`}>
-            <Star fill="#fda4af"/>
+          <div key={index} className={`star ${index >= rank && "opacity-50"}`}>
+            <Star fill="#fda4af" />
           </div>
         );
       })}
@@ -20,7 +20,7 @@ const Stars = ({ rank }: { rank: number }) => {
   );
 };
 
-const myProfile: React.FC = () => {
+const MyProfile: React.FC = () => {
   const router = useRouter();
   const goBack = () => {
     router.back();
@@ -84,9 +84,12 @@ const myProfile: React.FC = () => {
               </button>
             </h1>
             <div className="work-cards my-4">
-              {profile?.WorkEx.map(({ role, company, description }) => {
+              {profile?.WorkEx.map(({ role, company, description }, index) => {
                 return (
-                  <div className="work-card rounded-xl bg-white p-4">
+                  <div
+                    key={index}
+                    className="work-card rounded-xl bg-white p-4"
+                  >
                     <h1 className="text-2xl font-bold">{role}</h1>
                     <h2 className="text-xl">{company}</h2>
                     <br />
@@ -105,9 +108,12 @@ const myProfile: React.FC = () => {
             </h1>
             <div className="work-cards my-4">
               {profile?.Education.map(
-                ({ course, institution, description }) => {
+                ({ course, institution, description }, index) => {
                   return (
-                    <div className="ed-card rounded-xl bg-white p-4">
+                    <div
+                      key={index}
+                      className="ed-card rounded-xl bg-white p-4"
+                    >
                       <h1 className="text-2xl font-bold">{course}</h1>
                       <h2 className="text-xl">{institution}</h2>
                       <p className="text-zinc-400">{description}</p>
@@ -165,4 +171,4 @@ const myProfile: React.FC = () => {
   );
 };
 
-export default myProfile;
+export default MyProfile;

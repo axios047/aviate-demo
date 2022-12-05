@@ -39,6 +39,7 @@ const SearchableDropdown: React.FC<{
         <div className="search-results top-100 absolute inset-x-0 rounded-xl bg-white">
           {searchResults?.map((skill: any, index: number) => (
             <button
+              key={index}
               onClick={() => {
                 setVal("skill", skill.name);
                 setSkillId(skill.id);

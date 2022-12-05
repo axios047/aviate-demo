@@ -11,7 +11,7 @@ import { useRouter } from "next/router";
 import Loader from "../client/Ui/Loader";
 import { spawn } from "child_process";
 
-const login: React.FC = () => {
+const Login: React.FC = () => {
   const { data: sessionData } = useSession();
 
   const router = useRouter();
@@ -79,4 +79,4 @@ const login: React.FC = () => {
   );
 };
 
-export default login;
+export default Login;

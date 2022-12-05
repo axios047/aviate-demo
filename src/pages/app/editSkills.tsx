@@ -46,9 +46,12 @@ const EditSkills: React.FC = () => {
     <FormLayout title="Add Education">
       <div className="current-skills">
         {!currentSkills || (currentSkills.length === 0 && "No skills added")}
-        {currentSkills?.map(({ skill }) => {
+        {currentSkills?.map(({ skill }, index) => {
           return (
-            <button className="skill-tag mr-2 rounded-full border border-rose-400 bg-rose-100 px-4 py-2">
+            <button
+              key={index}
+              className="skill-tag mr-2 rounded-full border border-rose-400 bg-rose-100 px-4 py-2"
+            >
               {skill.name}
             </button>
           );

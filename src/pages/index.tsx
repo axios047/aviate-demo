@@ -86,11 +86,13 @@ const Home: NextPage = () => {
             </h1>
             <br />
             <div className="job-grid mb-24 flex flex-row flex-wrap">
-              {data?.map((item) => {
-                let postedOn = moment(item.createdAt.toISOString()).format(
+              {data?.map((item, index) => {
+                const postedOn = moment(item.createdAt.toISOString()).format(
                   "YYYYMMDD"
                 );
-                return <JobCard {...{ ...item, postedOn: postedOn }} />;
+                return (
+                  <JobCard key={index} {...{ ...item, postedOn: postedOn }} />
+                );
               })}
             </div>
           </div>
