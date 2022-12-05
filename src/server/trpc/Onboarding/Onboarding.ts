@@ -22,7 +22,7 @@ export const getOnboardingStatus = async (session: any, prisma: any) => {
   if (currentTasks == null) {
     // if tasks for user not init then add all tasks
     // get all tasks
-    let allTasks = await prisma.onboardtask.findMany({
+    const allTasks = await prisma.onboardtask.findMany({
       orderBy: { order: "asc" },
     });
     currentTasks = await prisma.userTasks.create({
@@ -51,13 +51,13 @@ export const completeATask = async (
 ) => {
   console.log("SERVER", taskId, session, "keys");
   // get user id
-  let user = await prisma.user.findUnique({
+  const user = await prisma.user.findUnique({
     where: {
       email: session.user.email,
     },
   });
   // get current tasks
-  let currentTasks = await prisma.userTasks.findUnique({
+  const currentTasks = await prisma.userTasks.findUnique({
     where: {
       userId: user.id,
     },
