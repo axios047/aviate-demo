@@ -28,7 +28,7 @@ export const getOnboardingStatus = async (session: any, prisma: any) => {
     // if tasks for user not init then add all tasks
     // get all tasks
     let allTasks = await prisma.onboardtask.findMany({
-      orderBy: [{ order: "asc" }],
+      orderBy: { order: "asc" },
     });
     currentTasks = await prisma.userTasks.create({
       data: {
@@ -43,7 +43,7 @@ export const getOnboardingStatus = async (session: any, prisma: any) => {
     });
   }
   let completion = totalCount - currentTasks.tasks.length;
-  let pcent = ((completion / totalCount) * 100).toPrecision(2);
+  let pcent = ((completion / totalCount) * 100);
   // get next step for user
   let nextStep = currentTasks.tasks[0];
   return { completed: pcent, next: nextStep };

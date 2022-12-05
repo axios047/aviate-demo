@@ -1,4 +1,5 @@
 import { z } from "zod";
+import { recommendJobs } from "../Dashboard/Dashboard";
 import { router, publicProcedure, protectedProcedure } from "../trpc";
 
 export const authRouter = router({
@@ -31,6 +32,27 @@ export const authRouter = router({
         data: { ...input },
       });
     }),
+  getUserProfile: protectedProcedure
+    .input(z.object({ email: z.string().nullish() }))
+    .query(async ({ ctx, input }) => {
+      return ctx.prisma.user.findUnique({
+        where: {
+          email: input.email || undefined,
+        },
+        include: {
+          WorkEx: true,
+          Education: true,
+          UserSkills: {
+            include: {
+              skill: true,
+            },
+          },
+        },
+      });
+    }),
+  getRecommendedJobs: protectedProcedure.query(({ ctx }) =>
+    recommendJobs(ctx.session, ctx.prisma)
+  ),
   addUserWork: protectedProcedure
     .input(
       z.object({
@@ -82,9 +104,9 @@ export const authRouter = router({
           email: ctx.session.user.email || undefined,
         },
       },
-      include:{
-        skill:true
-      }
+      include: {
+        skill: true,
+      },
     });
   }),
   addUserSkill: protectedProcedure
@@ -110,7 +132,17 @@ export const authRouter = router({
         },
       });
     }),
-  getSecretMessage: protectedProcedure.query(() => {
-    return "you can now see this secret message!";
-  }),
+  verifySkill: protectedProcedure
+    .input(z.object({ id: z.string() }))
+    .mutation(({ ctx, input }) => {
+      return ctx.prisma.userSkills.update({
+        where: {
+          id: input.id,
+        },
+        data: {
+          isVerified: true,
+          verificationRank: Math.floor(Math.random() * 6),
+        },
+      });
+    }),
 });

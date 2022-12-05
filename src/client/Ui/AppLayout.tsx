@@ -26,13 +26,13 @@ const nav = [
     icon: <Briefcase />,
   },
   {
-    href: "/app/jobsearch",
+    href: "/app/jobSearch",
     title: "Browse Jobs",
     icon: <Search />,
   },
   {
     href: "/app/companies",
-    title: "Explore",
+    title: "Companies",
     icon: <Compass />,
   },
 ];
@@ -82,8 +82,14 @@ const ProfileStub: React.FC = () => {
       {isDrop && (
         <div className="dropdown absolute inset-x-0 top-full w-full rounded-xl bg-white p-4">
           <button
+            onClick={() => router.push("/app/myProfile")}
+            className="flex w-full justify-between p-4 text-black hover:bg-zinc-200 rounded-md"
+          >
+            My Profile
+          </button>
+          <button
             onClick={() => signOut()}
-            className="flex w-full justify-between p-4 text-red-400 hover:bg-zinc-100"
+            className="flex w-full justify-between p-4 text-red-400 hover:bg-zinc-200 rounded-md"
           >
             Log out
             <LogOut />

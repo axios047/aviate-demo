@@ -14,7 +14,7 @@ const config = {
     defaultLocale: "en",
   },
   images: {
-    domains: ["photos.angel.co", "cdn.discordapp.com","www.pngitem.com"],
+    domains: ["photos.angel.co", "cdn.discordapp.com","www.pngitem.com","ik.imagekit.io"],
   },
 };
 

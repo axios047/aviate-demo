@@ -17,6 +17,7 @@ import { useEffect } from "react";
 import Image from "next/image";
 
 import moment from "moment";
+import JobCard from "../client/Ui/JobCard";
 
 const Home: NextPage = () => {
   const { data, error, status } = trpc.general.getAllJobPost.useQuery();
@@ -85,69 +86,11 @@ const Home: NextPage = () => {
             </h1>
             <br />
             <div className="job-grid mb-24 flex flex-row flex-wrap">
-              {data?.map(({ id, skills, title, postedBy, createdAt }) => {
-                let postedOn = moment(createdAt.toISOString()).format(
+              {data?.map((item) => {
+                let postedOn = moment(item.createdAt.toISOString()).format(
                   "YYYYMMDD"
                 );
-                return (
-                  <div key={id} className="w-1/3 p-2">
-                    <div className="job-card rounded-xl bg-white p-4">
-                      <div className="flex">
-                        <div className="image relative">
-                          <Image
-                            // TODO - fix type
-                            // @ts-ignore
-                            src={postedBy.logoUrl}
-                            width={75}
-                            height={75}
-                            className="h-16 w-16 overflow-hidden rounded-full"
-                          />
-                        </div>
-                        <div className="ml-6 flex flex-col">
-                          <h1 className="text-2xl font-bold">{title}</h1>
-                          <h3 className="text-xl text-zinc-400">
-                            @ {postedBy.name}
-                          </h3>
-                        </div>
-                      </div>
-                      <div className="skills mt-8">
-                        <p className="block text-zinc-400">Skills required</p>
-                        <br />
-                        <div className="flex flex-wrap">
-                          {skills.map(({ name, id }) => {
-                            return (
-                              <button
-                                key={id}
-                                className="skill-tag mr-2 rounded-full border border-rose-400 bg-rose-100 px-4 py-2"
-                              >
-                                {name}
-                              </button>
-                            );
-                          })}
-                        </div>
-                        <br />
-                        <hr />
-                        <div className="post-foot flex items-center justify-between pt-4">
-                          <div className="posted">
-                            {moment(postedOn, "YYYYMMDD").fromNow()}
-                          </div>
-                          <div className="actions flex">
-                            <button className="mr-2 flex rounded-xl border border-violet-500 px-4 py-2 uppercase text-violet-500">
-                              <Bookmark />
-                              &ensp;
-                              <span>Save</span>
-                            </button>
-                            <button className="mr-2 flex rounded-xl bg-violet-500 px-4 py-2 uppercase text-white">
-                              <span>Apply</span>
-                              &ensp;
-                              <ArrowRightCircle />
-                            </button>
-                          </div>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                );
+                return <JobCard {...{ ...item, postedOn: postedOn }} />;
               })}
             </div>
           </div>
@@ -158,27 +101,3 @@ const Home: NextPage = () => {
 };
 
 export default Home;
-
-const AuthShowcase: React.FC = () => {
-  const { data: sessionData } = useSession();
-
-  const { data: secretMessage } = trpc.auth.getSecretMessage.useQuery(
-    undefined, // no input
-    { enabled: sessionData?.user !== undefined }
-  );
-
-  return (
-    <div className="flex flex-col items-center justify-center gap-4">
-      <p className="text-center text-2xl text-white">
-        {sessionData && <span>Logged in as {sessionData.user?.name}</span>}
-        {secretMessage && <span> - {secretMessage}</span>}
-      </p>
-      <button
-        className="rounded-full bg-white/10 px-10 py-3 font-semibold text-white no-underline transition hover:bg-white/20"
-        onClick={sessionData ? () => signOut() : () => signIn()}
-      >
-        {sessionData ? "Sign out" : "Sign in"}
-      </button>
-    </div>
-  );
-};
