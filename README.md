@@ -2,6 +2,8 @@
 
 A demo dashboard showing the onboarding process for candidate looking for a job
 
+- [Demo](https://aviate-demo.vercel.app/)
+
 ## Architecture
 
 This is a [T3 Stack](https://create.t3.gg/) project bootstrapped with `create-t3-app`.
