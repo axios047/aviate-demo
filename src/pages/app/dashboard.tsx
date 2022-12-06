@@ -11,7 +11,8 @@ import { trpc } from "../../utils/trpc";
 
 const Dashboard: React.FC = () => {
   const { data: sessionData } = useSession();
-  const { data: onboarding } = trpc.onboard.getStatus.useQuery();
+  const { data: onboarding, status } = trpc.onboard.getStatus.useQuery();
+  const completion = onboarding?.completed || 100;
   return (
     <AppLayout>
       <div className="header my-6">
@@ -23,9 +24,10 @@ const Dashboard: React.FC = () => {
         <hr className="border-rose-300" />
       </div>
       <div className="widgets">
+        {status === "loading" && <Loader />}
         <div className="widgets-row flex flex-wrap">
-          {onboarding?.completed < 100 && <OnboardCard />}
-          {onboarding?.completed >= 100 && <Overview />}
+          {completion < 100 && <OnboardCard />}
+          {completion >= 100 && <Overview />}
           <InterviewCard />
           <LevelCard />
         </div>
