@@ -12,7 +12,12 @@ import { trpc } from "../../utils/trpc";
 const Dashboard: React.FC = () => {
   const { data: sessionData } = useSession();
   const { data: onboarding, status } = trpc.onboard.getStatus.useQuery();
-  const completion = onboarding?.completed || 100;
+  const [completion, setCompletion] = useState(0);
+  useEffect(() => {
+    if (onboarding?.completed !== undefined) {
+      setCompletion(onboarding?.completed);
+    }
+  }, [onboarding]);
   return (
     <AppLayout>
       <div className="header my-6">

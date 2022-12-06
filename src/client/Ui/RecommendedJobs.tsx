@@ -2,6 +2,7 @@ import moment from "moment";
 import React, { useEffect } from "react";
 import { trpc } from "../../utils/trpc";
 import JobCard from "./JobCard";
+import Loader from "./Loader";
 
 const RecommendedJobs: React.FC = () => {
   const { data, error, status } = trpc.auth.getRecommendedJobs.useQuery();
@@ -15,6 +16,8 @@ const RecommendedJobs: React.FC = () => {
       <hr className="border-rose-300" />
       <br />
       <div className="job-wrap mb-24 flex flex-wrap">
+        {data?.length===0 && "No data"}
+        {status === "loading" && <Loader/>}
         {data?.map((post: any) => {
           const postedOn = moment(post.createdAt.toISOString()).format(
             "YYYYMMDD"
