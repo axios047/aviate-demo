@@ -13,9 +13,9 @@ const OnboardCard: React.FC = () => {
     router.push(data?.next.callbackUrl);
   };
   return (
-    <div className="onboard-card w-2/5 overflow-hidden p-2 ">
-      <div className="wrap h-full rounded-xl border border-black bg-fuchsia-400 p-4">
-        {status == "loading" && <Loader />}
+    <div className="onboard-card w-2/5 overflow-hidden p-2">
+      <div className="wrap h-full overflow-hidden rounded-xl border border-black bg-fuchsia-400">
+        {/* {status == "loading" && <Loader />} */}
         <div className="status px-4 pt-4">
           <div className="status-bar w-full rounded-full bg-fuchsia-600 p-2">
             <div

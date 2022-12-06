@@ -23,21 +23,15 @@ const Dashboard: React.FC = () => {
         <hr className="border-rose-300" />
       </div>
       <div className="widgets">
-        {onboarding?.completed ? (
-          <>
-            <div className="widgets-row flex flex-wrap">
-              {onboarding?.completed < 100 && <OnboardCard />}
-              {onboarding?.completed >= 100 && <Overview />}
-              <InterviewCard />
-              <LevelCard />
-            </div>
-            <div className="rec-jobs my-6">
-              <RecommendedJobs/>
-            </div>
-          </>
-        ) : (
-          <Loader />
-        )}
+        <div className="widgets-row flex flex-wrap">
+          {onboarding?.completed < 100 && <OnboardCard />}
+          {onboarding?.completed >= 100 && <Overview />}
+          <InterviewCard />
+          <LevelCard />
+        </div>
+        <div className="rec-jobs my-6">
+          <RecommendedJobs />
+        </div>
       </div>
     </AppLayout>
   );
